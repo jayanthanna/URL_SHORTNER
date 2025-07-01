@@ -33,7 +33,7 @@ A simple URL shortener built using **Node.js**, **Express**, **MongoDB**, and **
    MONGO_URI=your_mongodb_connection_string
 4. Start the server
    node index.js
-  # or
+   or
   npx nodemon index.js
 5. Visit in browser
   http://localhost:3000
