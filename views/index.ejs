@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener Project</title>
+    <style>
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeInBg 1.5s ease;
+      }
+
+      @keyframes fadeInBg {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        padding: 2.5rem 2rem;
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+        animation: slideIn 1s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-40px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        color: #4f3ca7;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+
+      p {
+        color: #555;
+        margin-bottom: 1.5rem;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      label {
+        font-weight: 500;
+        color: #4f3ca7;
+        margin-bottom: 0.3rem;
+        text-align: left;
+      }
+
+      input[type="text"] {
+        padding: 0.7rem 1rem;
+        border: 1px solid #c3aed6;
+        border-radius: 8px;
+        font-size: 1rem;
+        outline: none;
+        transition: border 0.2s;
+      }
+
+      input[type="text"]:focus {
+        border: 1.5px solid #764ba2;
+      }
+
+      button {
+        padding: 0.7rem 1rem;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(118, 75, 162, 0.08);
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      button:hover {
+        background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
+        transform: translateY(-2px) scale(1.03);
+      }
+
+      h2 {
+        color: #764ba2;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+      }
+
+      a {
+        color: #4f3ca7;
+        text-decoration: underline;
+        word-break: break-all;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: #764ba2;
+      }
+
+      @media (max-width: 500px) {
+        .container {
+          padding: 1.2rem 0.5rem;
+          max-width: 95vw;
+        }
+        h1 {
+          font-size: 1.3rem;
+        }
+        h2 {
+          font-size: 1rem;
+        }
+        input[type="text"],
+        button {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to the URL Shortener Project</h1>
+      <p>This project allows you to shorten URLs easily.</p>
+      <form action="/shorten" method="POST">
+        <label for="url">Enter URL to shorten:</label>
+        <input type="text" id="url" name="longUrl" required />
+        <button type="submit">Shorten URL</button>
+      </form>
+      <% if(shortUrl) { %>
+      <h2>Shortened URL:</h2>
+      <p>
+        Short Url:-
+        <a href="<%= shortUrl %>" target="_blank"><%= shortUrl %></a>
+      </p>
+      <% } %>
+    </div>
+    <script>
+      // Fade in animation for container on page load
+      document.addEventListener("DOMContentLoaded", function () {
+        const container = document.querySelector(".container");
+        container.style.opacity = 0;
+        setTimeout(() => {
+          container.style.transition =
+            "opacity 1s cubic-bezier(0.23, 1, 0.32, 1)";
+          container.style.opacity = 1;
+        }, 200);
+      });
+    </script>
+  </body>
+</html>
